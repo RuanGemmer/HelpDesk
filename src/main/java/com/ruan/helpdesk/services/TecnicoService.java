@@ -3,6 +3,8 @@ package com.ruan.helpdesk.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.support.Repositories;
@@ -39,6 +41,14 @@ public class TecnicoService {
 		Tecnico newObj = new Tecnico(objDTO);
 		return repository.save(newObj);
 	}
+	
+	public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
+		objDTO.setId(id);
+		Tecnico oldObj = findById(id);
+		validaPorCpfEEmail(objDTO);
+		oldObj = new Tecnico(objDTO);
+		return repository.save(oldObj);
+	}
 
 	private void validaPorCpfEEmail(TecnicoDTO objDTO) {
 		Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
@@ -52,4 +62,6 @@ public class TecnicoService {
 		}
 		
 	}
+
+	
 }
