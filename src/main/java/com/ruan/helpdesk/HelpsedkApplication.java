@@ -10,4 +10,4 @@ public class HelpsedkApplication {
 		SpringApplication.run(HelpsedkApplication.class, args);
 	}
 
-}
+} 
