@@ -61,19 +61,12 @@ public class ResourceExceptionHandler {
 	
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ResponseEntity<StandardError> dataIntegrityViolationException(ConstraintViolationException ex, HttpServletRequest request) {
-	    String errorMessage = ex.getConstraintViolations()
-	            .stream()
-	            .findFirst()
-	            .map(violation -> violation.getPropertyPath() + " " + violation.getMessage())
-	            .orElse("Validation Error");
-
-	    ValidationError error = new ValidationError(
-	            System.currentTimeMillis(),
-	            HttpStatus.BAD_REQUEST.value(),
-	            errorMessage,
-	            ex.getMessage(),
-	            request.getRequestURI());
-
-	    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+		StandardError error = new StandardError(System.currentTimeMillis(), 
+				HttpStatus.BAD_REQUEST.value(),
+				"Violação de Dados",
+				"Número do registro de contribuinte individual brasileiro (CPF) inválido",
+				request.getRequestURI());
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
 }

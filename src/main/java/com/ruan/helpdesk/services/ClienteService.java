@@ -24,7 +24,7 @@ public class ClienteService {
 	private ClienteRepository repository;
 	@Autowired
 	private PessoaRepository pessoaRepository;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
@@ -48,6 +48,9 @@ public class ClienteService {
 	public Cliente update(Integer id, @Valid ClienteDTO objDTO) {
 		objDTO.setId(id);
 		Cliente oldObj = findById(id);
+		if (!objDTO.getSenha().equals(oldObj.getSenha())) {
+			objDTO.setSenha(encoder.encode(objDTO.getSenha()));
+		}
 		validaPorCpfEEmail(objDTO);
 		oldObj = new Cliente(objDTO);
 		return repository.save(oldObj);
