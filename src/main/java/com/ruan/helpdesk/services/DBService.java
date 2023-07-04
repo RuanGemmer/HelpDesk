@@ -42,7 +42,7 @@ public class DBService {
 		Cliente cli3 = new Cliente(null, "Charles Darwin", "792.043.830-62", "darwin@mail.com", encoder.encode("123"));
 		Cliente cli4 = new Cliente(null, "Stephen Hawking", "177.409.680-30", "hawking@mail.com", encoder.encode("123"));
 		Cliente cli5 = new Cliente(null, "Max Planck", "081.399.300-83", "planck@mail.com", encoder.encode("123"));
-		Cliente cli6 = new Cliente(null, "Visitante", "482.399.920-72", "visitante@teste.com", encoder.encode("visitante"));
+		Cliente cli6 = new Cliente(null, "Visitante", "482.399.920-72", "visitante@teste.com", encoder.encode("visitante746521"));
 		
 		
 		Chamado c1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 1", "Teste chamado 1", tec1, cli1);
